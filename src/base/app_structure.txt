@@ -1,0 +1,22 @@
+.
+├── cmd
+│   ├── finishshift
+│   │   └── main.go
+│   └── takeshift
+│       └── main.go
+├── deploy
+│   └── docker-compose.yml
+├── go.mod
+├── go.sum
+├── internal
+│   ├── app
+│   │   └── command_executor.go
+│   ├── cli
+│   │   └── cli.go
+│   ├── domain
+│   │   └── doctor.go
+│   └── pgsql
+│       ├── connection.go
+│       └── doctor_repository.go
+└── scripts
+    └── init_schema.sql

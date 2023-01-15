@@ -7,146 +7,98 @@ import { github, vsDark } from "@code-surfer/themes";
 
 export const theme = vsDark;
 
-# Hello 👋
+## Абстрактные транзакции в Go
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+- Антон Кулинский
+- Илья Цыганов
 
 ---
 
 <CodeSurfer>
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
+```jsx file=./src/base/app_structure.sh title="Структура проекта"
 ```
 
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
-
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
+```jsx 16:17 file=./src/base/app_structure.sh title="Структура проекта" subtitle="Модели предметной области"
 ```
 
-```diff 1[10:14],2[15:19],3[22:27],10:12
+```jsx file=./src/base/app_structure.sh title="Структура проекта"
+```
 
+```jsx 12:13 file=./src/base/app_structure.sh title="Структура проекта" subtitle="Исполнитель команд"
+```
+
+```jsx file=./src/base/app_structure.sh title="Структура проекта"
+```
+
+```jsx 18:20 file=./src/base/app_structure.sh title="Структура проекта" subtitle="Реализация репозитория"
+```
+
+```jsx file=./src/base/app_structure.sh title="Структура проекта"
+```
+
+```jsx 14:15 file=./src/base/app_structure.sh title="Структура проекта" subtitle="Командный интерфейс"
+```
+
+```jsx file=./src/base/app_structure.sh title="Структура проекта"
+```
+
+```jsx 2:6 file=./src/base/app_structure.sh title="Структура проекта" subtitle="Точки входа"
+```
+
+```jsx file=./src/base/app_structure.sh title="Структура проекта"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurferColumns themes={[vsDark, github]}>
+<CodeSurfer>
 
-<Step>
-
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+```jsx 1:12 file=./src/base/domain/doctor.go title="Модели ошибок" subtitle="internal/domain/doctor.go"
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
+```jsx 13:32 file=./src/base/domain/doctor.go title="Модель доктора" subtitle="internal/domain/doctor.go"
 ```
 
-</Step>
-
-<Step>
-
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+```jsx 33:50 file=./src/base/domain/doctor.go title="Модели коллекций докторов" subtitle="internal/domain/doctor.go"
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
-```
-
-</Step>
-
-</CodeSurferColumns>
+</CodeSurfer>
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+<CodeSurfer>
+
+```jsx 1:18 file=./src/base/app/command_executor.go title="Исполнитель команд" subtitle="internal/app/command_executor.go"
+```
+
+```jsx 19:33 file=./src/base/app/command_executor.go title="Команда 'Начать смену'" subtitle="internal/app/command_executor.go"
+```
+
+```jsx 34:54 file=./src/base/app/command_executor.go title="Команда 'Закончить смену'" subtitle="internal/app/command_executor.go"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx 1:21 file=./src/base/pgsql/doctor_repository.go title="Реализация репозитория" subtitle="internal/pgsql/doctor_repository.go"
+```
+
+```jsx 22:37 file=./src/base/pgsql/doctor_repository.go title="Извлечение модели доктора" subtitle="internal/pgsql/doctor_repository.go"
+```
+
+```jsx 38:50 file=./src/base/pgsql/doctor_repository.go title="Обновление модели доктора" subtitle="internal/pgsql/doctor_repository.go"
+```
+
+```jsx 51:77 file=./src/base/pgsql/doctor_repository.go title="Извлечение дежурных докторов" subtitle="internal/pgsql/doctor_repository.go"
+```
+
+</CodeSurfer>
+
+---
+
+Спасибо за внимание!
