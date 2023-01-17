@@ -7,7 +7,7 @@ import (
 
 var (
 	ErrDoctorNotFound          = errors.New("doctor not found")
-	ErrAtLeastOneDoctorOneCall = errors.New("failed to finish shift: at least one doctor must be on call")
+	ErrAtLeastOneDoctorOnCall = errors.New("failed to finish shift: at least one doctor must be on call")
 )
 
 type Doctor struct {
@@ -18,7 +18,7 @@ type Doctor struct {
 
 func (d *Doctor) FinishShift(doctorsOnCallCount int) error {
 	if doctorsOnCallCount == 1 {
-		return ErrAtLeastOneDoctorOneCall
+		return ErrAtLeastOneDoctorOnCall
 	}
 
 	d.OnCall = false
