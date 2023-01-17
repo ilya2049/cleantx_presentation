@@ -1,9 +1,7 @@
 import {
   CodeSurfer,
-  CodeSurferColumns,
-  Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import { vsDark } from "@code-surfer/themes";
 
 export const theme = vsDark;
 
@@ -76,13 +74,13 @@ export const theme = vsDark;
 
 <CodeSurfer>
 
-```jsx 1:12 file=./src/base/domain/doctor.go title="Модели ошибок" subtitle="internal/domain/doctor.go"
+```jsx 1:12 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модели ошибок"
 ```
 
-```jsx 13:32 file=./src/base/domain/doctor.go title="Модель доктора" subtitle="internal/domain/doctor.go"
+```jsx 13:32 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модель доктора"
 ```
 
-```jsx 33:50 file=./src/base/domain/doctor.go title="Модели коллекций докторов" subtitle="internal/domain/doctor.go"
+```jsx 33:50 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модели коллекций докторов"
 ```
 
 </CodeSurfer>
@@ -103,13 +101,13 @@ export const theme = vsDark;
 
 <CodeSurfer>
 
-```jsx 1:18 file=./src/base/app/command_executor.go title="Исполнитель команд" subtitle="internal/app/command_executor.go"
+```jsx 1:18 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Исполнитель команд"
 ```
 
-```jsx 19:33 file=./src/base/app/command_executor.go title="Команда 'Начать смену'" subtitle="internal/app/command_executor.go"
+```jsx 19:33 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Команда 'Начать смену'"
 ```
 
-```jsx 34:54 file=./src/base/app/command_executor.go title="Команда 'Закончить смену'" subtitle="internal/app/command_executor.go"
+```jsx 34:54 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Команда 'Закончить смену'"
 ```
 
 </CodeSurfer>
@@ -130,16 +128,16 @@ export const theme = vsDark;
 
 <CodeSurfer>
 
-```jsx 1:21 file=./src/base/pgsql/doctor_repository.go title="Реализация репозитория" subtitle="internal/pgsql/doctor_repository.go"
+```jsx 1:21 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Реализация репозитория"
 ```
 
-```jsx 22:37 file=./src/base/pgsql/doctor_repository.go title="Извлечение модели доктора" subtitle="internal/pgsql/doctor_repository.go"
+```jsx 22:37 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Извлечение модели доктора"
 ```
 
-```jsx 38:50 file=./src/base/pgsql/doctor_repository.go title="Обновление модели доктора" subtitle="internal/pgsql/doctor_repository.go"
+```jsx 38:50 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Обновление модели доктора"
 ```
 
-```jsx 51:77 file=./src/base/pgsql/doctor_repository.go title="Извлечение дежурных докторов" subtitle="internal/pgsql/doctor_repository.go"
+```jsx 51:77 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Извлечение дежурных докторов"
 ```
 
 </CodeSurfer>
