@@ -143,4 +143,58 @@ export const theme = vsDark;
 
 ---
 
+<CodeSurfer>
+
+```jsx file=./src/base/app_structure.txt title="Внедрение транзакции"
+```
+
+```jsx 13 file=./src/base/app_structure.txt title="Внедрение транзакции"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx 34:54 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Потерянное обновление"
+```
+
+```jsx 35:38 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса считали, что 1 доктор дежурит"
+```
+
+```jsx 49:51 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса завершили смены двух докторов"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx file=./src/base/app_structure.txt title="Внедрение транзакции"
+```
+
+```jsx 20 file=./src/base/app_structure.txt title="Внедрение транзакции"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx 51:77 file=./src/base/pgsql/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов"
+```
+
+```jsx 56 file=./src/base/pgsql/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов"
+```
+
+```jsx 56 file=./src/for_update/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов: блокировка строк"
+```
+
+</CodeSurfer>
+
+---
+
 Спасибо за внимание!
