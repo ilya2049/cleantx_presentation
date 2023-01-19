@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	ErrDoctorNotFound          = errors.New("doctor not found")
+	ErrDoctorNotFound         = errors.New("doctor not found")
 	ErrAtLeastOneDoctorOnCall = errors.New("failed to finish shift: at least one doctor must be on call")
 )
 
