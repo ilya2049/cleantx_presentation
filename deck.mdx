@@ -1,142 +1,190 @@
-import {
-  CodeSurfer,
-} from "code-surfer";
+import {CodeSurfer} from "code-surfer";
 import { vsDark } from "@code-surfer/themes";
 
-export const theme = vsDark;
+<div style={{
+  textAlign: `center`,
+}}>
 
-## Абстрактные транзакции в Go
+# Абстрактные транзакции в go
 
-Презентация исходного кода
+</div>
+
+Кулинский Антон
+
+Цыганов Илья
 
 ---
 
-<CodeSurfer>
+import speakerAntonJpeg from "./images/speaker-anton.jpeg"
 
-```jsx file=./src/base/app_structure.txt title="Структура проекта"
-```
+*Кулинский Антон*
+<Image src={speakerAntonJpeg} style={{
+  maxHeight: `100px`, 
+  maxWidth: `100px`,
+  borderRadius: `50%`,
+}} />
 
-```jsx 16:17 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Модели предметной области"
-```
+Ведущий разработчик платформы EDU
 
-```jsx file=./src/base/app_structure.txt title="Структура проекта"
-```
+---
 
-```jsx 12:13 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Исполнитель команд"
-```
+import speakerIlyaJpeg from "./images/speaker-ilya.jpeg"
 
-```jsx file=./src/base/app_structure.txt title="Структура проекта"
-```
+*Цыганов Илья*
+<Image src={speakerIlyaJpeg} style={{
+  maxHeight: `100px`,
+  maxWidth: `100px`,
+  borderRadius: `50%`,
+}} />
 
-```jsx 18:20 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Реализация репозитория"
-```
+Разработчик платформы EDU
 
-```jsx file=./src/base/app_structure.txt title="Структура проекта"
-```
+---
 
-```jsx 14:15 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Командный интерфейс"
-```
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/base/app_structure.txt title="Структура проекта"
-```
-
-```jsx 2:6 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Точки входа"
-```
-
-```jsx file=./src/base/app_structure.txt title="Структура проекта"
+```go file=./src/what_is_tx.go title="Что такое транзакция?"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+## Абстрактные транзакции
 
-```jsx file=./src/base/clean_architecture.txt title="Слои сервиса"
+- Наиболее актуальны в чистой архитектуре
+- Применяются в слое приложения
+- Инкапсулируют драйвер базы данных
+
+---
+
+## Демонстрационный пример
+
+- В клинике работают доктора 
+- Доктора начинают и завершают смены
+- *Всегда должен дежурить минимум один доктор*
+
+---
+
+import hospitalPng from "./images/hospital.png"
+
+## Демонстрационный пример
+
+<Image src={hospitalPng} style={{height: `458px`, width: `630px`}} />
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/base/app_structure.txt title="Структура проекта"
+```
+
+```txt 16:17 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Модели предметной области"
+```
+
+```txt 12:13 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Исполнитель команд"
+```
+
+```txt 18:20 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Реализация репозитория"
+```
+
+```txt 14:15 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Командный интерфейс"
+```
+
+```txt 2:6 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Точки входа"
+```
+
+```txt file=./src/base/app_structure.txt title="Структура проекта"
+```
+
+```txt 11:20 file=./src/base/app_structure.txt title="Слои сервиса" subtitle="В файловой системе"
+```
+
+```txt file=./src/base/clean_architecture.txt title="Слои сервиса" subtitle="Концептуально"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/base/app_structure.txt title="Слой предметной области"
+```txt file=./src/base/app_structure.txt title="Слой предметной области"
 ```
 
-```jsx 17 file=./src/base/app_structure.txt title="Слой предметной области"
-```
-
-</CodeSurfer>
-
----
-
-<CodeSurfer>
-
-```jsx 1:12 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модели ошибок"
-```
-
-```jsx 13:32 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модель доктора"
-```
-
-```jsx 33:50 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модели коллекций докторов"
+```txt 17 file=./src/base/app_structure.txt title="Слой предметной области"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/base/app_structure.txt title="Слой приложения"
+```go 1:12 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модели ошибок"
 ```
 
-```jsx 13 file=./src/base/app_structure.txt title="Слой приложения"
+```go 13:32 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модель доктора"
 ```
 
-</CodeSurfer>
-
----
-
-<CodeSurfer>
-
-```jsx 1:18 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Исполнитель команд"
-```
-
-```jsx 19:33 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Команда 'Начать смену'"
-```
-
-```jsx 34:54 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Команда 'Закончить смену'"
+```go 33:50 file=./src/base/domain/doctor.go title="Слой предметной области" subtitle="Модели коллекций докторов"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/base/app_structure.txt title="Инфраструктура: адаптер postgresql"
+```txt file=./src/base/app_structure.txt title="Слой приложения"
 ```
 
-```jsx 20 file=./src/base/app_structure.txt title="Инфраструктура: адаптер postgresql"
+```txt 13 file=./src/base/app_structure.txt title="Слой приложения"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx 1:21 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Реализация репозитория"
+```go 1:18 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Исполнитель команд"
 ```
 
-```jsx 22:37 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Извлечение модели доктора"
+```go 19:33 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Команда 'Начать смену'"
 ```
 
-```jsx 38:50 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Обновление модели доктора"
+```go 34:54 file=./src/base/app/command_executor.go title="Слой приложения" subtitle="Команда 'Закончить смену'"
 ```
 
-```jsx 51:77 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Извлечение дежурных докторов"
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/base/app_structure.txt title="Инфраструктура: адаптер postgresql"
+```
+
+```txt 20 file=./src/base/app_structure.txt title="Инфраструктура: адаптер postgresql"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 1:21 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Реализация репозитория"
+```
+
+```go 22:37 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Извлечение модели доктора"
+```
+
+```go 38:50 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Обновление модели доктора"
+```
+
+```go 51:77 file=./src/base/pgsql/doctor_repository.go title="Инфраструктура: адаптер postgresql" subtitle="Извлечение дежурных докторов"
 ```
 
 </CodeSurfer>
@@ -147,54 +195,54 @@ export const theme = vsDark;
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/base/app_structure.txt title="Внедрение транзакции"
+```txt file=./src/base/app_structure.txt title="Внедрение транзакции"
 ```
 
-```jsx 13 file=./src/base/app_structure.txt title="Внедрение транзакции"
-```
-
-</CodeSurfer>
-
----
-
-<CodeSurfer>
-
-```jsx 34:54 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Потерянное обновление"
-```
-
-```jsx 35:38 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса считали, что 1 доктор дежурит"
-```
-
-```jsx 49:51 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса завершили смены двух докторов"
+```txt 13 file=./src/base/app_structure.txt title="Внедрение транзакции"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/base/app_structure.txt title="Внедрение транзакции"
+```go 34:54 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Потерянное обновление"
 ```
 
-```jsx 20 file=./src/base/app_structure.txt title="Внедрение транзакции"
+```go 35:38 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса считали, что 1 доктор дежурит"
+```
+
+```go 49:51 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса завершили смены двух докторов"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx 51:77 file=./src/base/pgsql/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов"
+```txt file=./src/base/app_structure.txt title="Внедрение транзакции"
 ```
 
-```jsx 56 file=./src/base/pgsql/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов"
+```txt 20 file=./src/base/app_structure.txt title="Внедрение транзакции"
 ```
 
-```jsx 56 file=./src/for_update/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов: блокировка строк"
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 51:77 file=./src/base/pgsql/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов"
+```
+
+```go 56 file=./src/base/pgsql/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов"
+```
+
+```go 56 file=./src/for_update/doctor_repository.go title="Внедрение транзакции" subtitle="Извлечение дежурных докторов: блокировка строк"
 ```
 
 </CodeSurfer>
@@ -205,72 +253,72 @@ export const theme = vsDark;
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
+```txt file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
 ```
 
-```jsx 17 file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
-```
-
-</CodeSurfer>
-
----
-
-<CodeSurfer>
-
-```jsx 48 file=./src/base/domain/doctor.go title="Транзакция в репозитории" subtitle="Скрываем транзакцию в репозитории"
-```
-
-```jsx 48 file=./src/tx_in_repo/domain/doctor.go title="Транзакция в репозитории" subtitle="Скрываем транзакцию в репозитории"
+```txt 17 file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
+```go 48 file=./src/base/domain/doctor.go title="Транзакция в репозитории" subtitle="Скрываем транзакцию в репозитории"
 ```
 
-```jsx 13 file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
-```
-
-</CodeSurfer>
-
----
-
-<CodeSurfer>
-
-```jsx 34:54 file=./src/base/app/command_executor.go title="Транзакция в репозитории" subtitle="Убираем команду 'Закончить смену' в репозиторий"
-```
-
-```jsx 34:36 file=./src/tx_in_repo/app/command_executor.go title="Транзакция в репозитории" subtitle="Убираем команду 'Закончить смену' в репозиторий"
+```go 48 file=./src/tx_in_repo/domain/doctor.go title="Транзакция в репозитории" subtitle="Скрываем транзакцию в репозитории"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
+```txt file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
 ```
 
-```jsx 20 file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
+```txt 13 file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurfer>
+<CodeSurfer theme={vsDark}>
 
-```jsx 94:110 file=./src/tx_in_repo/pgsql/doctor_repository.go title="Транзакция в репозитории" subtitle="Открытие/завершение"
+```go 34:54 file=./src/base/app/command_executor.go title="Транзакция в репозитории" subtitle="Убираем команду 'Закончить смену' в репозиторий"
 ```
 
-```jsx 112:131 file=./src/tx_in_repo/pgsql/doctor_repository.go title="Транзакция в репозитории" subtitle="Команда 'Завершить смену'"
+```go 34:36 file=./src/tx_in_repo/app/command_executor.go title="Транзакция в репозитории" subtitle="Убираем команду 'Закончить смену' в репозиторий"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
+```
+
+```txt 20 file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 94:110 file=./src/tx_in_repo/pgsql/doctor_repository.go title="Транзакция в репозитории" subtitle="Открытие/завершение"
+```
+
+```go 112:131 file=./src/tx_in_repo/pgsql/doctor_repository.go title="Транзакция в репозитории" subtitle="Команда 'Завершить смену'"
 ```
 
 </CodeSurfer>
