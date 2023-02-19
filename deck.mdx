@@ -1,16 +1,29 @@
 import {CodeSurfer} from "code-surfer";
 import { vsDark } from "@code-surfer/themes";
 
-<div style={{
-  textAlign: `center`,
-}}>
+export const theme = {
+  styles: {
+    h1: {
+      fontSize: 64,
+      textAlign: `center`,
+    },
+    h2: {
+      fontSize: 32,
+    },
+    p: {
+      fontSize: 32,
+      textAlign: `center`,
+    },
+    li: {
+      fontSize: 32,
+    },
+  },
+};
+
 
 # Абстрактные транзакции в go
 
-</div>
-
-Кулинский Антон
-
+Кулинский Антон <br /> 
 Цыганов Илья
 
 ---
@@ -19,8 +32,8 @@ import speakerAntonJpeg from "./images/speaker-anton.jpeg"
 
 *Кулинский Антон*
 <Image src={speakerAntonJpeg} style={{
-  maxHeight: `100px`, 
-  maxWidth: `100px`,
+  maxHeight: `200px`, 
+  maxWidth: `200px`,
   borderRadius: `50%`,
 }} />
 
@@ -32,8 +45,8 @@ import speakerIlyaJpeg from "./images/speaker-ilya.jpeg"
 
 *Цыганов Илья*
 <Image src={speakerIlyaJpeg} style={{
-  maxHeight: `100px`,
-  maxWidth: `100px`,
+  maxHeight: `200px`,
+  maxWidth: `200px`,
   borderRadius: `50%`,
 }} />
 
@@ -58,7 +71,11 @@ import speakerIlyaJpeg from "./images/speaker-ilya.jpeg"
 
 ---
 
+import hospitalPng from "./images/hospital.png"
+
 ## Демонстрационный пример
+
+<Image src={hospitalPng} style={{height: `458px`, width: `630px`}} />
 
 - В клинике работают доктора 
 - Доктора начинают и завершают смены
@@ -66,11 +83,8 @@ import speakerIlyaJpeg from "./images/speaker-ilya.jpeg"
 
 ---
 
-import hospitalPng from "./images/hospital.png"
-
-## Демонстрационный пример
-
-<Image src={hospitalPng} style={{height: `458px`, width: `630px`}} />
+Чтобы начать и завершить смену, доктора регистрируют свои действия в специальном приложении.
+Давайте посмотрим исходный код.
 
 ---
 
@@ -107,6 +121,13 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
+Мы посмотрели на структуру проекта "с высоты птичьего полета". 
+Теперь повнимательнее приглядимся к каждому архитектурному слою приложения.
+
+Начнем со слоя предметной области. 
+
+---
+
 <CodeSurfer theme={vsDark}>
 
 ```txt file=./src/base/app_structure.txt title="Слой предметной области"
@@ -134,6 +155,13 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
+Мы увидели, что модель доктора позволяет определить, может ли доктор покинуть смену, 
+или он - последний, и придется еще подежурить.
+
+На очереди слой приложения.
+
+---
+
 <CodeSurfer theme={vsDark}>
 
 ```txt file=./src/base/app_structure.txt title="Слой приложения"
@@ -158,6 +186,18 @@ import hospitalPng from "./images/hospital.png"
 ```
 
 </CodeSurfer>
+
+---
+
+Приложение в процессе завершения смены делает запросы в репозиторий.
+
+Пора узнать, как устроена реализация репозитория.
+
+---
+
+В go довольно много способов взаимодействовать с БД. 
+
+В данном проекте используется библиотека `github.com/jackc/pgx`.
 
 ---
 
@@ -195,6 +235,12 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
+Приложение прекрасно работало, но в один прекрасный день клиника осталась без дежурных докторов.
+
+Давайте выясним почему.
+
+---
+
 <CodeSurfer theme={vsDark}>
 
 ```txt file=./src/base/app_structure.txt title="Внедрение транзакции"
@@ -209,16 +255,24 @@ import hospitalPng from "./images/hospital.png"
 
 <CodeSurfer theme={vsDark}>
 
-```go 34:54 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Потерянное обновление"
+```go 2:7 file=./src/for_update/command_executor.go title="Внедрение транзакции"
 ```
 
-```go 35:38 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса считали, что 1 доктор дежурит"
+```go 14:18 file=./src/for_update/command_executor.go title="Внедрение транзакции"
 ```
 
-```go 49:51 file=./src/base/app/command_executor.go title="Внедрение транзакции" subtitle="Два конкурентных запроса завершили смены двух докторов"
+```go 20:24 file=./src/for_update/command_executor.go title="Внедрение транзакции"
 ```
 
 </CodeSurfer>
+
+---
+
+Теперь все ясно! 
+
+Начнем исправлять баг.
+
+Сначала заблокируем считанные строки.
 
 ---
 
