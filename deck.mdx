@@ -545,6 +545,95 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
+Идея: транзакцией управляет хранилище репозиториев (unit of work).
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/unit_of_work/app_structure.txt title="Применение Unit of Work"
+```
+
+```txt 3 file=./src/unit_of_work/app_structure.txt title="Применение Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 40:47 file=./src/unit_of_work/app/command_executor.go title="Применение Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/unit_of_work/app_structure.txt title="Абстрактный Unit of Work"
+```
+
+```txt 8 file=./src/unit_of_work/app_structure.txt title="Абстрактный Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go file=./src/unit_of_work/domain/unit_of_work.go title="Абстрактный Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/unit_of_work/app_structure.txt title="Реализация Unit of Work"
+```
+
+```txt 13 file=./src/unit_of_work/app_structure.txt title="Реализация Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 1:20 file=./src/unit_of_work/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Провайдер Unit of Work"
+```
+
+```go 22:31 file=./src/unit_of_work/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Создание Unit of Work"
+```
+
+```go 47:53 file=./src/unit_of_work/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Unit of Work - контейнер транзакции"
+```
+
+```go 52 file=./src/unit_of_work/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Репозиторий готов принять в конструктор tx"
+```
+
+```go 33:45 file=./src/unit_of_work/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Фиксация изменений"
+```
+
+```go 34 file=./src/unit_of_work/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Явное приведение для получения доступа к tx"
+```
+
+</CodeSurfer>
+
+---
+
+## Единица работы: Плюсы / Минусы
+- (+) Наглядно: видны границы транзакции
+- (-) Решение сложно расширять: UnitOfWork provider знает про все репозитории
+- (-) Есть приведение типов
+
+---
+
 ### №4 Единица работы в callback-функции
 
 ---
