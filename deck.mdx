@@ -3,21 +3,21 @@ import { vsDark } from "@code-surfer/themes";
 
 export const theme = {
   styles: {
-    h1: {
-      fontSize: 64,
-      textAlign: `center`,
+      h1: {
+        fontSize: 64,
+        textAlign: `center`,
+      },
+      h2: {
+        fontSize: 32,
+      },
+      p: {
+        fontSize: 32,
+        textAlign: `center`,
+      },
+      li: {
+        fontSize: 32,
+      },
     },
-    h2: {
-      fontSize: 32,
-    },
-    p: {
-      fontSize: 32,
-      textAlign: `center`,
-    },
-    li: {
-      fontSize: 32,
-    },
-  },
 };
 
 
@@ -75,11 +75,18 @@ import speakerIlyaJpeg from "./images/speaker-ilya.jpeg"
 ```go file=./src/what_is_tx/go_tx.go title="Транзакция" subtitle="Библиотека jackc/pgx"
 ```
 
-```go file=./src/what_is_tx/go_tx_abstract.go title="Транзакция" subtitle="Абстрактная транзакция?"
+```go file=./src/what_is_tx/go_tx_abstract.go title="Транзакция" subtitle="Абстрактная транзакция"
 ```
 
-
 </CodeSurfer>
+
+---
+
+Абстрактные хранилищам нужны абстрактные транзакции!
+
+---
+
+Рассмотрим вырианты реализации абстрактных транзакций с помощью демонстрационного примера.
 
 ---
 
@@ -96,47 +103,51 @@ import hospitalPng from "./images/hospital.png"
 ---
 
 Чтобы начать и завершить смену, доктора регистрируют свои действия в специальном приложении.
+
 Давайте посмотрим исходный код.
 
 ---
 
 <CodeSurfer theme={vsDark}>
 
-```txt file=./src/base/app_structure.txt title="Структура проекта"
+```txt file=./src/base/app_structure.txt title="Исходный код приложения"
 ```
 
-```txt 16:17 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Модели предметной области"
+```txt 16:17 file=./src/base/app_structure.txt title="Исходный код приложения" subtitle="Модели предметной области"
 ```
 
-```txt 12:13 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Исполнитель команд"
+```txt 12:13 file=./src/base/app_structure.txt title="Исходный код приложения" subtitle="Исполнитель команд"
 ```
 
-```txt 18:20 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Реализация репозитория"
+```txt 18:20 file=./src/base/app_structure.txt title="Исходный код приложения" subtitle="Реализация репозитория"
 ```
 
-```txt 14:15 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Командный интерфейс"
+```txt 14:15 file=./src/base/app_structure.txt title="Исходный код приложения" subtitle="Командный интерфейс"
 ```
 
-```txt 2:6 file=./src/base/app_structure.txt title="Структура проекта" subtitle="Точки входа"
+```txt 2:6 file=./src/base/app_structure.txt title="Исходный код приложения" subtitle="Точки входа"
 ```
 
-```txt file=./src/base/app_structure.txt title="Структура проекта"
+```txt file=./src/base/app_structure.txt title="Исходный код приложения"
 ```
 
-```txt 11:20 file=./src/base/app_structure.txt title="Слои сервиса" subtitle="В файловой системе"
+```txt 11:20 file=./src/base/app_structure.txt title="Архитектурные слои" subtitle="В файловой системе"
 ```
 
-```txt file=./src/base/clean_architecture.txt title="Слои сервиса" subtitle="Концептуально"
+```txt file=./src/base/clean_architecture.txt title="Архитектурные слои" subtitle="Концептуально"
 ```
 
 </CodeSurfer>
 
 ---
 
-Мы посмотрели на структуру проекта "с высоты птичьего полета". 
-Теперь повнимательнее приглядимся к каждому архитектурному слою приложения.
+Мы посмотрели на структуру приложения.
 
-Начнем со слоя предметной области. 
+Теперь подробнее рассмотрим архитектурные слои.
+
+---
+
+Начнем со слоя предметной области!
 
 ---
 
@@ -167,10 +178,11 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
-Мы увидели, что модель доктора позволяет определить, может ли доктор покинуть смену, 
-или он - последний, и придется еще подежурить.
+Мы увидели, что модель доктора не позволит оставить клинику без дежурных. 
 
-На очереди слой приложения.
+---
+
+Рассмотрим слой приложения!
 
 ---
 
@@ -315,6 +327,12 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
+Далее требуется обозначить рамки транзакции.
+
+Рассмотрим несколько различных вариантов.
+
+---
+
 ### №1 Транзакция в репозитории
 
 ---
@@ -388,6 +406,12 @@ import hospitalPng from "./images/hospital.png"
 ```
 
 </CodeSurfer>
+
+---
+
+## Плюсы / Минусы
+- (+) Слой инфраструктуры определяет слой приложения
+- (-) Наглядность: видны границы транзакции
 
 ---
 
