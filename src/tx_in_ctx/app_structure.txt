@@ -6,5 +6,7 @@ internal
 ├── domain
 │   └── doctor.go
 └── pgsql
+    ├── app_decorator.go
+    ├── command_executor.go
     ├── connection.go
     └── doctor_repository.go

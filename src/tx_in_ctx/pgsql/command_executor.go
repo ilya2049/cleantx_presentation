@@ -29,18 +29,6 @@ func beginTxAndInjectInCtx(ctx context.Context, db *pgx.Conn,
 	return context.WithValue(ctx, ctxCommandExecutorKey, tx), tx, nil
 }
 
-func closeTx(ctx context.Context, tx pgx.Tx, err error) error {
-	if err != nil {
-		if rollbackErr := tx.Rollback(ctx); rollbackErr != nil {
-			log.Println("failed to finish shift: failed to rollback tx", err.Error())
-		}
-
-		return err
-	}
-
-	return tx.Commit(ctx)
-}
-
 func getCommandExecutorFromCtxOrDefault(
 	ctx context.Context,
 	defaultCommandExecutor commandExecutor,
@@ -56,4 +44,16 @@ func getCommandExecutorFromCtxOrDefault(
 	}
 
 	return ctxCommandExecutor
+}
+
+func closeTx(ctx context.Context, tx pgx.Tx, err error) error {
+	if err != nil {
+		if rollbackErr := tx.Rollback(ctx); rollbackErr != nil {
+			log.Println("failed to finish shift: failed to rollback tx", err.Error())
+		}
+
+		return err
+	}
+
+	return tx.Commit(ctx)
 }

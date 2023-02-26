@@ -267,10 +267,10 @@ import hospitalPng from "./images/hospital.png"
 
 <CodeSurfer theme={vsDark}>
 
-```txt file=./src/base/app_structure.txt title="Внедрение транзакции"
+```txt file=./src/for_update/app_structure.txt title="Внедрение транзакции"
 ```
 
-```txt 13 file=./src/base/app_structure.txt title="Внедрение транзакции"
+```txt 10 file=./src/for_update/app_structure.txt title="Внедрение транзакции"
 ```
 
 </CodeSurfer>
@@ -409,13 +409,110 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
-## Плюсы / Минусы
+## Транзакция в репозитории: Плюсы / Минусы
 - (+) Слой инфраструктуры определяет слой приложения
 - (-) Наглядность: видны границы транзакции
 
 ---
 
 ### №2 Транзакция в context.Context
+
+---
+
+Идея: передавать транзакцию в context.Context между слоями.
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/tx_in_ctx/app_structure.txt title="Абстрактный испольнитель команд postgresql"
+```
+
+```txt 10 file=./src/tx_in_ctx/app_structure.txt title="Абстрактный испольнитель команд postgresql"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 1:16 file=./src/tx_in_ctx/pgsql/command_executor.go title="Абстрактный испольнитель команд postgresql" subtitle="Интерфейс"
+```
+
+```go 18:30 file=./src/tx_in_ctx/pgsql/command_executor.go title="Абстрактный испольнитель команд postgresql" subtitle="Начало транзакции в контексте"
+```
+
+```go 32:47 file=./src/tx_in_ctx/pgsql/command_executor.go title="Абстрактный испольнитель команд postgresql" subtitle="Извлечение исполнителя команд из контекста"
+```
+
+```go 49:60 file=./src/tx_in_ctx/pgsql/command_executor.go title="Абстрактный испольнитель команд postgresql" subtitle="Завершение транзакции"
+```
+
+</CodeSurfer>
+
+---
+
+Пишем декораторы для Команд
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/tx_in_ctx/app_structure.txt title="Декоратор команд"
+```
+
+```txt 9 file=./src/tx_in_ctx/app_structure.txt title="Декоратор команд"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 1:25 file=./src/tx_in_ctx/pgsql/app_decorator.go title="Декоратор команд" subtitle="Конструктор"
+```
+
+```go 27:36 file=./src/tx_in_ctx/pgsql/app_decorator.go title="Декоратор команд" subtitle="Команда 'Начать смену'"
+```
+
+```go 38:47 file=./src/tx_in_ctx/pgsql/app_decorator.go title="Декоратор команд" subtitle="Команда 'Завершить смену'"
+```
+
+</CodeSurfer>
+
+---
+
+При этом в слое приложения ничего не изменилось!
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/tx_in_ctx/app_structure.txt title="Слой приложения не изменился"
+```
+
+```txt 3 file=./src/tx_in_ctx/app_structure.txt title="Слой приложения не изменился"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 34:54 file=./src/tx_in_ctx/app/command_executor.go title="Слой приложения не изменился"
+```
+
+</CodeSurfer>
+
+---
+
+## Транзакция в context.Context: Плюсы / Минусы
+- (+) Слой приложения не изменился
+- (-) Не наглядно: не видны границы транзакции
+- (-) Каждую команду нужно оборачивать в декоратор
 
 ---
 
