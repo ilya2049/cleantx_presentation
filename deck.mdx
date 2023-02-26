@@ -54,20 +54,32 @@ import speakerIlyaJpeg from "./images/speaker-ilya.jpeg"
 
 ---
 
-<CodeSurfer theme={vsDark}>
-
-```go file=./src/what_is_tx.go title="Что такое транзакция?"
-```
-
-</CodeSurfer>
+Что мы понимаем под *абстрактными транзакциями*?
 
 ---
 
-## Абстрактные транзакции
+<CodeSurfer theme={vsDark}>
 
-- Наиболее актуальны в чистой архитектуре
-- Применяются в слое приложения
-- Инкапсулируют драйвер базы данных
+```sql file=./src/what_is_tx/sql.sql title="Без транзакции" subtitle="Команды sql"
+```
+
+```go file=./src/what_is_tx/go.go title="Без транзакции" subtitle="Библиотека jackc/pgx"
+```
+
+```go file=./src/what_is_tx/go_abstract.go title="Без транзакции" subtitle="Абстрактное хранилище"
+```
+
+```sql file=./src/what_is_tx/sql_tx.sql title="Транзакция" subtitle="Команды sql"
+```
+
+```go file=./src/what_is_tx/go_tx.go title="Транзакция" subtitle="Библиотека jackc/pgx"
+```
+
+```go file=./src/what_is_tx/go_tx_abstract.go title="Транзакция" subtitle="Абстрактная транзакция?"
+```
+
+
+</CodeSurfer>
 
 ---
 
