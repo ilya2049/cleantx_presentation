@@ -410,8 +410,10 @@ import hospitalPng from "./images/hospital.png"
 ---
 
 ## Транзакция в репозитории: Плюсы / Минусы
-- (+) Слой инфраструктуры определяет слой приложения
-- (-) Наглядность: видны границы транзакции
+- (+) Нет приведения типов
+- (+) Наглядность: видны границы транзакции
+- (+) Расширяемое решение
+- (-) Слой инфраструктуры определяет слой приложения (большой минус!)
 
 ---
 
@@ -474,10 +476,31 @@ import hospitalPng from "./images/hospital.png"
 ```go 1:25 file=./src/tx_in_ctx/pgsql/app_decorator.go title="Декоратор команд" subtitle="Конструктор"
 ```
 
-```go 27:36 file=./src/tx_in_ctx/pgsql/app_decorator.go title="Декоратор команд" subtitle="Команда 'Начать смену'"
+```go 27:36 file=./src/tx_in_ctx/pgsql/app_decorator.go title="Декоратор команд" subtitle="Команда 'Завершить смену'"
 ```
 
-```go 38:47 file=./src/tx_in_ctx/pgsql/app_decorator.go title="Декоратор команд" subtitle="Команда 'Завершить смену'"
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/tx_in_ctx/app_structure.txt title="Получение исполнителя команд в репозитории"
+```
+
+```txt 12 file=./src/tx_in_ctx/app_structure.txt title="Получение исполнителя команд в репозитории"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 57 file=./src/tx_in_ctx/pgsql/doctor_repository.go title="Получение исполнителя команд в репозитории"
+```
+
+```go 61 file=./src/tx_in_ctx/pgsql/doctor_repository.go title="Получение исполнителя команд в репозитории"
 ```
 
 </CodeSurfer>
@@ -511,7 +534,9 @@ import hospitalPng from "./images/hospital.png"
 
 ## Транзакция в context.Context: Плюсы / Минусы
 - (+) Слой приложения не изменился
+- (+) Расширяемое решение
 - (-) Не наглядно: не видны границы транзакции
+- (-) Есть приведение типов
 - (-) Каждую команду нужно оборачивать в декоратор
 
 ---
@@ -527,4 +552,5 @@ import hospitalPng from "./images/hospital.png"
 ### №5 Сквозная транзакция
 
 ---
+
 Спасибо за внимание!

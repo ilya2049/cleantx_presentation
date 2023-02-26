@@ -24,17 +24,6 @@ func DecorateDoctorCommandExecutorWithTx(
 	}
 }
 
-func (e *TxDoctorCommandExecutor) TakeShift(ctx context.Context, doctorID int) error {
-	ctx, tx, err := beginTxAndInjectInCtx(ctx, e.db)
-	if err != nil {
-		return err
-	}
-
-	err = e.DoctorCommandExecutor.TakeShift(ctx, doctorID)
-
-	return closeTx(ctx, tx, err)
-}
-
 func (e *TxDoctorCommandExecutor) FinishShift(ctx context.Context, doctorID int) error {
 	ctx, tx, err := beginTxAndInjectInCtx(ctx, e.db)
 	if err != nil {
