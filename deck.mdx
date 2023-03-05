@@ -337,6 +337,10 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
+Идея: скрыть всю транзакцию в репозитории
+
+---
+
 <CodeSurfer theme={vsDark}>
 
 ```txt file=./src/tx_in_repo/app_structure.txt title="Транзакция в репозитории"
@@ -421,7 +425,7 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
-Идея: передавать транзакцию в context.Context между слоями.
+Идея: передавать транзакцию в context.Context между слоями
 
 ---
 
@@ -545,7 +549,7 @@ import hospitalPng from "./images/hospital.png"
 
 ---
 
-Идея: транзакцией управляет хранилище репозиториев (unit of work).
+Идея: транзакцией управляет хранилище репозиториев (unit of work)
 
 ---
 
@@ -635,6 +639,87 @@ import hospitalPng from "./images/hospital.png"
 ---
 
 ### №4 Единица работы в callback-функции
+
+---
+
+Идея: тот же unit of work, но в callback-функции
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/callback/app_structure.txt title="Применение callback Unit of Work"
+```
+
+```txt 3 file=./src/callback/app_structure.txt title="Применение callback Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 39:62 file=./src/callback/app/command_executor.go title="Применение Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/callback/app_structure.txt title="Абстрактный Unit of Work"
+```
+
+```txt 8 file=./src/callback/app_structure.txt title="Абстрактный Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go file=./src/callback/domain/unit_of_work.go title="Абстрактный Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```txt file=./src/callback/app_structure.txt title="Реализация Unit of Work"
+```
+
+```txt 13 file=./src/callback/app_structure.txt title="Реализация Unit of Work"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+```go 1:20 file=./src/callback/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Провайдер Unit of Work"
+```
+
+```go 46:52 file=./src/callback/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Unit of Work"
+```
+
+```go 22:44 file=./src/callback/pgsql/unit_of_work.go title="Реализация Unit of Work" subtitle="Обработка атомарных изменений"
+```
+
+</CodeSurfer>
+
+---
+
+## Единица работы в callback-функции: Плюсы / Минусы
+- (+) Наглядно: видны границы транзакции
+- (+) Нет приведения типов
+- (-) Решение сложно расширять: UnitOfWork знает про все репозитории
+- (-) Функция Atomic возвращает только error
 
 ---
 

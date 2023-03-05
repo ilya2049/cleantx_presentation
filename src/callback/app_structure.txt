@@ -1,0 +1,13 @@
+internal
+├── app
+│   └── command_executor.go
+├── cli
+│   └── cli.go
+├── domain
+│   ├── doctor.go
+│   └── unit_of_work.go
+└── pgsql
+    ├── command_executor.go
+    ├── connection.go
+    ├── doctor_repository.go
+    └── unit_of_work.go
